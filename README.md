@@ -1,2 +1,2 @@
-- 👋 Hi, I’m @bradycox
-- 👀 I’m interested in the usual stuff, you know, happiness.
+👋 Hi, I’m @bradycox
+Thanks for stopping by.
