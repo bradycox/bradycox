@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>beard.sh</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#2b5797">
+  <meta name="apple-mobile-web-app-title" content="beard.sh">
+  <meta name="application-name" content="beard.sh">
+  <meta name="msapplication-TileColor" content="#2b5797">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="beard.sh" />
+  <link rel="icon" href="favicon.png">
+  <style>
+    .fakeshell {
+      display: inline-block;
+      background:    #444444;
+      border-radius: 11px;
+      box-shadow:    2px 2px #cccccc;
+      padding:       10px 25px 10px 25px;
+      color:         #00ff00;
+      font:          normal bold 26px/1 "Roboto", sans-serif;
+      text-align:    left;
+      text-shadow:   2px 2px #000000;
+      position: fixed;
+      right: 0;
+      left: 0;
+      bottom: 40%;
+      margin-right: auto;
+      margin-left: auto;
+      width: 50%;
+      min-width: 320px;
+      max-width: 500px;
+    }
+    object {
+      position: fixed;
+      right: 0;
+      left: 0;
+      margin-right: auto;
+      margin-left: auto;
+      min-height: 10em;
+      width: 90%;
+      height: 90%;
+    }
+  </style>
+</head>
+<body>
+  <center id="center">
+    <object data="vector/default.svg" ></object>
+    <input id="fakeshell" class="fakeshell" value="$ "/>
+  </center>
+  <script>
+    var iter = 0;
+    var text1 = "./beard.sh --email brady";
+    var my_fakeshell = document.getElementById("fakeshell");
+    my_fakeshell.style.transition='opacity 1s';
+    setTimeout(() => {
+      my_fakeshell.addEventListener("keydown", enter_key_pressed);
+      reset_button();
+      type_welcome_command();
+    }, 1200);
+    function reset_button() {
+      if(typeof event !== 'undefined'){ event.key = '' } ;
+      my_fakeshell.value = '$ ';
+    }
+    function enter_key_pressed() {
+      if (event.key === 'Enter' || event.keyCode === 13) {
+        if(/--welcome/.test(my_fakeshell.value)){
+          reset_button();
+          setTimeout(type_email_command, 40);
+        }
+        if(/--email/.test(my_fakeshell.value)){
+          reset_button();
+          setTimeout(email_command_result, 300);
+          my_fakeshell.style.transition='opacity 0s';
+          my_fakeshell.style.opacity = 0
+        }
+        if(/[a-z0-9A-Z._]*@[a-z0-9A-Z._]/.test(my_fakeshell.value)){
+          var yourMessage = "I/We have a project for you.";
+          var subject = "beard.sh - Onboarding: <your project here>";
+          var hereitis = text1.replace(/.* --email ([a-z]+)/, '$1').concat("@", 'beard.sh') ;
+          document.location.href = "mai"
+            + "lto:"
+            + hereitis
+            + "?subject="
+            + encodeURIComponent(subject)
+            + "&body=" + encodeURIComponent(yourMessage);
+        }
+      }
+    }
+    function type_welcome_command() {
+      var text1 = "./beard.sh --welcome" ;
+      if (iter < text1.length) {
+          my_fakeshell.value += text1.charAt(iter);
+          iter++;
+          setTimeout(type_welcome_command, 40);
+      } else { 
+        iter = 0; 
+      }
+    }
+    function type_email_command() {
+      if (iter < text1.length) {
+          my_fakeshell.value += text1.charAt(iter);
+          iter++;
+          setTimeout(type_email_command, 40);
+      } else {
+          iter = 0; 
+      }
+    }
+    function email_command_result() {
+          my_fakeshell.style.transition='opacity 2s';
+          var command_you_typed = my_fakeshell.value ;
+          reset_button();
+          my_fakeshell.style.opacity = 1
+          var hereismyemailaddress = text1.replace(/.* --email ([a-z]+)/, '$1').concat("@", 'beard.sh') ;
+          my_fakeshell.value = hereismyemailaddress;
+          my_fakeshell.style.textAlign = "center" ;
+          my_fakeshell.value = my_fakeshell.value.replace(/\|/, "") ;
+    }
+  </script>
+</body>
+</html>

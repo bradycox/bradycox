@@ -1,126 +1,437 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>beard.sh</title>
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/site.webmanifest">
-  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#2b5797">
-  <meta name="apple-mobile-web-app-title" content="beard.sh">
-  <meta name="application-name" content="beard.sh">
-  <meta name="msapplication-TileColor" content="#2b5797">
-  <meta name="theme-color" content="#ffffff">
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="beard.sh" />
-  <link rel="icon" href="favicon.png">
-  <style>
-    .fakeshell {
-      display: inline-block;
-      background:    #444444;
-      border-radius: 11px;
-      box-shadow:    2px 2px #cccccc;
-      padding:       10px 25px 10px 25px;
-      color:         #00ff00;
-      font:          normal bold 26px/1 "Roboto", sans-serif;
-      text-align:    left;
-      text-shadow:   2px 2px #000000;
-      position: fixed;
-      right: 0;
-      left: 0;
-      bottom: 40%;
-      margin-right: auto;
-      margin-left: auto;
-      width: 50%;
-      min-width: 320px;
-      max-width: 500px;
-    }
-    object {
-      position: fixed;
-      right: 0;
-      left: 0;
-      margin-right: auto;
-      margin-left: auto;
-      min-height: 10em;
-      width: 90%;
-      height: 90%;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume of Brady Cox</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#2b5797">
+    <meta name="apple-mobile-web-app-title" content="beard.sh">
+    <meta name="application-name" content="beard.sh">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="beard.sh" />
+    <link rel="icon" href="favicon.png">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle, #0d0d0d, #1a1f27);
+            color: #e0e0e0;
+            line-height: 1.6;
+            justify-content: flex-start;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .shimmer {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 25%, rgba(0, 255, 204, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%);
+            background-size: 300% 300%;
+            animation: shimmer 8s infinite;
+        }
+        @keyframes shimmer {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        .screen {
+            width: 90%;
+            max-width: 1200px;
+            max-height: 90vh;
+            background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+            border: 2px solid #00ffcc;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.7), inset 0 0 10px rgba(0, 255, 204, 0.3);
+            overflow: hidden;
+            margin: 2rem auto;
+        }
+        .freeze {
+            max-width: 1200px;
+            max-height: 90vh;
+            overflow: hidden;
+            margin: auto;
+        }
+        .scroll {
+            max-width: 1200px;
+            max-height: 60vh;
+            overflow: scroll;
+            margin: auto;
+        }
+        header {
+            background: linear-gradient(145deg, #1e7579, #2c0b3c);
+            padding: 1rem;
+            text-align: center;
+            color: #00ffcc;
+            border-bottom: 2px solid #00ffcc;
+        }
+        header h1 {
+            font-size: 2.6rem;
+            margin: 0;
+            color: #ffffff;
+            text-shadow: 0 5px 10px rgba(255, 255, 255, 0.8);
+        }
+        header p {
+            font-size: 1.2rem;
+            margin: 0.3rem 0;
+        }
+        header a {
+            color: #ffcc00;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 0.5rem;
+            text-shadow: 0 2px 4px rgba(255, 204, 0, 0.6);
+        }
+        section {
+            padding: 2rem;
+            margin: 1rem auto;
+            color: #d4d4d4;
+        }
+        section h2 {
+            color: #00ffcc;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #333;
+            padding-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 255, 204, 0.6);
+        }
+        .skill-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+        }
+        .skill-text {
+            max-width: 45%;
+            font-size: 1rem;
+            line-height: 1.5;
+            margin: 0;
+            text-align: left;
+            margin-right: 10%
+        }
+        ul {
+            list-style: disc inside;
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+        footer {
+            background: linear-gradient(145deg, #333, #555);
+            text-align: center;
+            padding: 1rem;
+            color: #00ffcc;
+            border-top: 2px solid #00ffcc;
+        }
+        canvas {
+            flex: 1;
+            min-width: 450px;
+            max-width: 470px;
+            height: auto;
+            width: auto;
+        }
+        .fakeshell {
+            display: inline-block;
+            background:    #444444;
+            border-radius: 11px;
+            box-shadow:    2px 2px #cccccc;
+            padding:       10px 25px 10px 25px;
+            color:         #00ff00;
+            font:          normal bold 26px/1 "Roboto", sans-serif;
+            text-align:    left;
+            text-shadow:   2px 2px #000000;
+            right: 0;
+            left: 0;
+            bottom: 40%;
+            margin-right: auto;
+            margin-left: auto;
+            width: 50%;
+            min-width: 320px;
+            max-width: 500px;
+        }
+        object {
+            right: 0;
+            left: 0;
+            margin-right: auto;
+            margin-left: auto;
+            min-height: 10em;
+            width: 90%;
+            height: 90%;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 </head>
 <body>
-  <center id="center">
-    <object data="vector/default.svg" ></object>
-    <input id="fakeshell" class="fakeshell" value="$ "/>
-  </center>
-  <script>
-    var iter = 0;
-    var text1 = "./beard.sh --email brady";
-    var my_fakeshell = document.getElementById("fakeshell");
-    my_fakeshell.style.transition='opacity 1s';
-    setTimeout(() => {
-      my_fakeshell.addEventListener("keydown", enter_key_pressed);
-      reset_button();
-      type_welcome_command();
-    }, 1200);
-    function reset_button() {
-      if(typeof event !== 'undefined'){ event.key = '' } ;
-      my_fakeshell.value = '$ ';
-    }
-    function enter_key_pressed() {
-      if (event.key === 'Enter' || event.keyCode === 13) {
-        if(/--welcome/.test(my_fakeshell.value)){
-          reset_button();
-          setTimeout(type_email_command, 40);
-        }
-        if(/--email/.test(my_fakeshell.value)){
-          reset_button();
-          setTimeout(email_command_result, 300);
-          my_fakeshell.style.transition='opacity 0s';
-          my_fakeshell.style.opacity = 0
-        }
-        if(/[a-z0-9A-Z._]*@[a-z0-9A-Z._]/.test(my_fakeshell.value)){
-          var yourMessage = "I/We have a project for you.";
-          var subject = "beard.sh - Onboarding: <your project here>";
-          var hereitis = text1.replace(/.* --email ([a-z]+)/, '$1').concat("@", 'beard.sh') ;
-          document.location.href = "mai"
-            + "lto:"
-            + hereitis
-            + "?subject="
-            + encodeURIComponent(subject)
-            + "&body=" + encodeURIComponent(yourMessage);
-        }
-      }
-    }
-    function type_welcome_command() {
-      var text1 = "./beard.sh --welcome" ;
-      if (iter < text1.length) {
-          my_fakeshell.value += text1.charAt(iter);
-          iter++;
-          setTimeout(type_welcome_command, 40);
-      } else { 
-        iter = 0; 
-      }
-    }
-    function type_email_command() {
-      if (iter < text1.length) {
-          my_fakeshell.value += text1.charAt(iter);
-          iter++;
-          setTimeout(type_email_command, 40);
-      } else {
-          iter = 0; 
-      }
-    }
-    function email_command_result() {
-          my_fakeshell.style.transition='opacity 2s';
-          var command_you_typed = my_fakeshell.value ;
-          reset_button();
-          my_fakeshell.style.opacity = 1
-          var hereismyemailaddress = text1.replace(/.* --email ([a-z]+)/, '$1').concat("@", 'beard.sh') ;
-          my_fakeshell.value = hereismyemailaddress;
-          my_fakeshell.style.textAlign = "center" ;
-          my_fakeshell.value = my_fakeshell.value.replace(/\|/, "") ;
-    }
-  </script>
+    <div class="shimmer-wrapper">
+        <div class="shimmer"></div>
+    </div>
+    <div class="screen">
+      <div class="freeze">
+        <header>
+            <h1>Resume of Brady Cox</h1>
+            <p>Senior Automation Engineer - Senior Developer - Senior Site Reliability Engineer - Team Lead - Great Guy</p>
+            <p>brady.cox@me.com | 801-326-0419</p>
+            <p><a href="https://github.com/bradycox">GitHub</a> | <a href="https://www.linkedin.com/in/brady-cox-773b6b94/">LinkedIn</a></p>
+            <center id="center">
+                <input id="fakeshell" class="fakeshell" value="$ "/>
+            </center>
+                <script>
+                var iter = 0;
+                var text1 = "./beard.sh --email brady";
+                var my_fakeshell = document.getElementById("fakeshell");
+                my_fakeshell.style.transition='opacity 1s';
+                setTimeout(() => {
+                    my_fakeshell.addEventListener("keydown", enter_key_pressed);
+                    reset_button();
+                    type_welcome_command();
+                }, 1200);
+                function reset_button() {
+                    if(typeof event !== 'undefined'){ event.key = '' } ;
+                    my_fakeshell.value = '$ ';
+                }
+                function enter_key_pressed() {
+                    if (event.key === 'Enter' || event.keyCode === 13) {
+                    if(/--welcome/.test(my_fakeshell.value)){
+                        reset_button();
+                        setTimeout(type_email_command, 40);
+                    }
+                    if(/--email/.test(my_fakeshell.value)){
+                        reset_button();
+                        setTimeout(email_command_result, 300);
+                        my_fakeshell.style.transition='opacity 0s';
+                        my_fakeshell.style.opacity = 0
+                    }
+                    if(/[a-z0-9A-Z._]*@[a-z0-9A-Z._]/.test(my_fakeshell.value)){
+                        var yourMessage = "I am ready to hire you";
+                        var subject = "beard.sh - Onboarding: <your project/company here>";
+                        var hereitis = text1.replace(/.* --email ([a-z]+)/, '$1').concat("@", 'beard.sh') ;
+                        document.location.href = "mai"
+                        + "lto:"
+                        + hereitis
+                        + "?subject="
+                        + encodeURIComponent(subject)
+                        + "&body=" + encodeURIComponent(yourMessage);
+                    }
+                    }
+                }
+                function type_welcome_command() {
+                    var text1 = "./beard.sh --welcome" ;
+                    if (iter < text1.length) {
+                        my_fakeshell.value += text1.charAt(iter);
+                        iter++;
+                        setTimeout(type_welcome_command, 40);
+                    } else { 
+                    iter = 0; 
+                    }
+                }
+                function type_email_command() {
+                    if (iter < text1.length) {
+                        my_fakeshell.value += text1.charAt(iter);
+                        iter++;
+                        setTimeout(type_email_command, 40);
+                    } else {
+                        iter = 0; 
+                    }
+                }
+                function email_command_result() {
+                        my_fakeshell.style.transition='opacity 2s';
+                        var command_you_typed = my_fakeshell.value ;
+                        reset_button();
+                        my_fakeshell.style.opacity = 1
+                        var hereismyemailaddress = text1.replace(/.* --email ([a-z]+)/, '$1').concat("@", 'beard.sh') ;
+                        my_fakeshell.value = hereismyemailaddress;
+                        my_fakeshell.style.textAlign = "center" ;
+                        my_fakeshell.value = my_fakeshell.value.replace(/\|/, "") ;
+                }
+                </script>
+        </header>
+      </div>
+      <div class="scroll">
+        <section>
+            <h2>Skill Summary</h2>
+            <div class="skill-details">
+                <canvas id="skillsChart"></canvas>
+                <p></p>
+                <div class="skill-text">
+                    <p><strong>Programming:</strong> Python, Bash, PHP, Perl, PowerShell</p>
+                    <p><strong>Automation:</strong> Ansible, Puppet</p>
+                    <p><strong>Containerization:</strong> Kubernetes, Docker, Podman</p>
+                    <p><strong>Monitoring:</strong> Prometheus, Grafana, Nagios, SolarWinds</p>
+                    <p><strong>Cloud Platforms:</strong> AWS, Kafka</p>
+                    <p><strong>Operating Systems:</strong> AIX, Solaris, RHEL, Debian, Ubuntu</p>
+                    <p><strong>Cyber Security:</strong> SELinux, Nmap, Wireshark</p>
+                    <p><strong>Other Skills:</strong> Cool graphs</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Certifications</h2>
+            <p>RHCSA (Red Hat Certified System Administrator)</p>
+            <p>RHCE (Red Hat Certified Engineer)</p>
+            <h2>Major Clients and Contracts</h2>
+            <ul>
+              <li>Goldman Sachs</li>
+              <li>Walmart</li>
+              <li>Capitol One</li>
+              <li>Boeing</li>
+              <li>I.R.S</li>
+              <li>US Army and Navy</li>
+              <li>Wells Fargo</li>
+              <li>Kaiser Permanente</li>
+              <li>IBM</li>
+              <li>SAS</li>
+              <li>HP Engineering</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Professional Experience - 16 years</h2>
+            <div>
+                <h3>Instructor/Consultant, Guru Labs</h3>
+                <p><em>2017-Present</em></p>
+                <ul>
+                    <li>Developed 3-day Fundamental Ansible course, taught to 960 students, earning multiple perfect ratings.</li>
+                    <li>Coordinated automation for a $90B Kaiser Permanente contract, saving 680 hours/month.</li>
+                    <li>Optimized Kaiser development workflows, reducing time to production by 6 weeks.</li>
+                    <li>Provided Enterprise Technology training for thousands of engineers across dozens of Fortune 100 companies and government agencies</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3>Self-Employed Linux Consultant, Choice Secure LLC</h3>
+                <p><em>2013-Present</em></p>
+                <ul>
+                    <li>Recovered critical government database filesystem, restoring progress and courses for family reunifications.</li>
+                    <li>Architected and secured Moodle education cluster for a childcare non-profit organization.</li>
+                    <li>Developed automated encrypted transfers for sensitive state data.</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3>Client Platforms Mission Control Global Lead, Goldman Sachs</h3>
+                <p><em>2013-2017</em></p>
+                <ul>
+                    <li>Managed 5,000 servers hosting 70+ applications and trained 400+ AppBank resources.</li>
+                    <li>Expanded team operations and centralized support, reducing incident frequency.</li>
+                    <li>Collaborated with major vendors like Microsoft and Red Hat for custom solutions.</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3>Installation and Backup Technician, Spillman Technologies</h3>
+                <p><em>2013 (7 months)</em></p>
+                <ul>
+                    <li>Reduced cut-over downtime from 8 hours to 3 minutes through improved procedures.</li>
+                    <li>Automated backup processes, reducing required headcount from 6 to 2.</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3>Principal Systems Administrator, ServerGurus</h3>
+                <p><em>2012-2013</em></p>
+                <ul>
+                    <li>Maintained uptime and availability for data centers across the U.S.</li>
+                    <li>Engineered automation solutions, including automated VPS recovery and deployment systems.</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3>Perl Developer - Custom Reports, Spillman Technologies</h3>
+                <p><em>2011-2012</em></p>
+                <ul>
+                    <li>Maintained a robust Perl codebase to deliver public safety reports.</li>
+                    <li>Developed ArcGIS utilities for geographic data analysis and mapping integration.</li>
+                    <li>Specialized in optimizing scripts and workflows using Regular Expressions.</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3>Research and Development - Email Marketing, Listmarketer, Inc.</h3>
+                <p><em>2008-2011</em></p>
+                <ul>
+                    <li>Managed DNS settings and optimized email deliverability for high-volume marketing campaigns.</li>
+                    <li>Developed scripts to sanitize and enhance data processing for customer campaigns.</li>
+                    <li>Implemented infrastructure optimizations to streamline hardware procurement and resource allocation.</li>
+                </ul>
+            </div>
+        </section>
+     </div>
+     <div class="freeze">
+        <footer>
+            <p>&copy; 2025 Brady Cox. All rights reserved.</p>
+        </footer>
+      </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('skillsChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'polarArea',
+                data: {
+                    labels: ['Programming', 'Automation', 'Containerization', 'Monitoring', 'Cloud Platforms', 'Operating Systems', 'Cyber Security'],
+                    datasets: [{
+                        label: 'Years Experience',
+                        data: [16, 16, 6, 15, 6, 16, 12],
+    backgroundColor: [
+      'rgba(255, 99, 132, 0.3)',
+      'rgba(255, 159, 64, 0.3)',
+      'rgba(255, 205, 86, 0.3)',
+      'rgba(75, 192, 192, 0.3)',
+      'rgba(54, 162, 235, 0.3)',
+      'rgba(153, 102, 255, 0.3)',
+      'rgba(201, 203, 207, 0.3)'
+    ],
+                        borderColor: '#00ffcc',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            ticks: { color: '#d4d4d4', font: { size: 14 } },
+                            grid: { color: '#333' }
+                        },
+                        y: {
+                            ticks: { color: '#d4d4d4', font: { size: 14 } },
+                            grid: { color: '#333' }
+                        }
+                    },
+                    barThickness: 40
+                }
+            });
+        });
+    </script>
 </body>
 </html>
