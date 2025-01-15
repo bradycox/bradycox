@@ -62,26 +62,14 @@
         }
         .screen {
             width: 90%;
-            max-width: 1200px;
+            max-width: 1000px;
             max-height: 90vh;
             background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
             border: 2px solid #00ffcc;
             border-radius: 20px;
             box-shadow: 0 0 20px rgba(0, 255, 204, 0.7), inset 0 0 10px rgba(0, 255, 204, 0.3);
-            overflow: hidden;
-            margin: 2rem auto;
-        }
-        .freeze {
-            max-width: 1200px;
-            max-height: 90vh;
-            overflow: hidden;
-            margin: auto;
-        }
-        .scroll {
-            max-width: 1200px;
-            max-height: 60vh;
             overflow: scroll;
-            margin: auto;
+            margin: 2rem auto;
         }
         header {
             background: linear-gradient(145deg, #1e7579, #2c0b3c);
@@ -151,10 +139,11 @@
         }
         canvas {
             flex: 1;
-            min-width: 450px;
-            max-width: 470px;
+            max-height: 460px;
+            max-width: 460px;
             height: auto;
             width: auto;
+
         }
         .fakeshell {
             display: inline-block;
@@ -184,19 +173,99 @@
             width: 90%;
             height: 90%;
         }
+        /* Pop-up container */
+        #mobile-popup {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        /* Pop-up content */
+        #mobile-popup .popup-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            color: #6a0d6a;
+        }
+        #mobile-popup .popup-content h1 {
+            font-size: 1.5rem;
+            margin: 0 0 10px;
+        }
+        #mobile-popup .popup-content p {
+            font-size: 1rem;
+            margin: 0 0 20px;
+        }
+        #mobile-popup .popup-content button {
+            background-color: #6a87a6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        #mobile-popup .popup-content button:hover {
+            background-color: #0056b3;
+        }
+        /* Show pop-up on small screens */
+        @media (max-width: 750px) {
+            #mobile-popup {
+                display: flex;
+            }
+            header h1 {
+                font-size: 1.6rem;
+            }
+            .freeze {
+                max-width: 1200px;
+                max-height: 90vh;
+                overflow: auto;
+            }
+            .fakeshell {
+                font: normal bold 16px/1 "Roboto", sans-serif;
+                width: 50%;
+                min-width: 250px;
+                max-width: 500px;
+            }
+            .scroll {
+                overflow-x: hidden;
+                overflow-y: visible;
+            }
+            .screen {
+                overflow: scroll;
+            }
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 </head>
 <body>
+    <div id="mobile-popup">
+        <div class="popup-content">
+            <h1>Better Viewed on a larger screen</h1>
+            <p>Consider a larger tablet or a desktop.</p>
+            <button onclick="closePopup()">That's fine</button>
+        </div>
+    </div>
+    <script>
+        function closePopup() {
+            document.getElementById('mobile-popup').style.display = 'none';
+        }
+    </script>
     <div class="shimmer-wrapper">
         <div class="shimmer"></div>
     </div>
     <div class="screen">
-      <div class="freeze">
         <header>
             <h1>Resume of Brady Cox</h1>
             <p>Senior Automation Engineer - Senior Developer - Senior Site Reliability Engineer - Team Lead - Great Guy</p>
-            <p>brady.cox@me.com | 801-326-0419</p>
+            <p>brady@beard.sh</p>
             <p><a href="https://github.com/bradycox">GitHub</a> | <a href="https://www.linkedin.com/in/brady-cox-773b6b94/">LinkedIn</a></p>
             <center id="center">
                 <input id="fakeshell" class="fakeshell" value="$ "/>
@@ -271,8 +340,6 @@
                 }
                 </script>
         </header>
-      </div>
-      <div class="scroll">
         <section>
             <h2>Skill Summary</h2>
             <div class="skill-details">
@@ -382,12 +449,9 @@
                 </ul>
             </div>
         </section>
-     </div>
-     <div class="freeze">
         <footer>
             <p>&copy; 2025 Brady Cox. All rights reserved.</p>
         </footer>
-      </div>
     </div>
 
     <script>
@@ -400,15 +464,15 @@
                     datasets: [{
                         label: 'Years Experience',
                         data: [16, 16, 6, 15, 6, 16, 12],
-    backgroundColor: [
-      'rgba(255, 99, 132, 0.3)',
-      'rgba(255, 159, 64, 0.3)',
-      'rgba(255, 205, 86, 0.3)',
-      'rgba(75, 192, 192, 0.3)',
-      'rgba(54, 162, 235, 0.3)',
-      'rgba(153, 102, 255, 0.3)',
-      'rgba(201, 203, 207, 0.3)'
-    ],
+                        backgroundColor: [
+                          'rgba(255, 99, 132, 0.3)',
+                          'rgba(255, 159, 64, 0.3)',
+                          'rgba(255, 205, 86, 0.3)',
+                          'rgba(75, 192, 192, 0.3)',
+                          'rgba(54, 162, 235, 0.3)',
+                          'rgba(153, 102, 255, 0.3)',
+                          'rgba(201, 203, 207, 0.3)'
+                        ],
                         borderColor: '#00ffcc',
                         borderWidth: 1
                     }]
